@@ -1,22 +1,25 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  /* CORES BASE (Paleta 1) */
+  --background: rgb(15 23 42); /* Fundo (Azul-Carvão) */
+  --foreground: rgb(226 232 240); /* Texto (Principal) */
 
-@theme inline {
+  /* CORES DA PALETA */
+  --panel: rgb(30 41 59); /* Painéis (Azul-Ardósia) */
+  --text-muted: rgb(100 116 139); /* Texto (Suave) */
+  --accent: rgb(59 130 246); /* Acento (Azul-Elétrico) */
+
+  /* CORES DE FEEDBACK */
+  --success: rgb(34 197 94);
+  --error: rgb(239 68 68);
+  --warning: rgb(249 115 22);
+
+  /* Fontes (do seu arquivo original) */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
