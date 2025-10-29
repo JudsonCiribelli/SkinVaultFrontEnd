@@ -9,9 +9,12 @@ import {
   FormMessage,
 } from "@/app/_components/ui/form";
 import { Input } from "@/app/_components/ui/input";
+import api from "@/services/api";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 import { useForm } from "react-hook-form";
 import z from "zod";
 
@@ -26,6 +29,7 @@ const SignUpSchema = z.object({
 type SignUpFormValue = z.infer<typeof SignUpSchema>;
 
 const SignUpComponent = () => {
+  const router = useRouter();
   const form = useForm<SignUpFormValue>({
     resolver: zodResolver(SignUpSchema),
     defaultValues: {
@@ -35,9 +39,25 @@ const SignUpComponent = () => {
     },
   });
 
+  const handleRegisterUser = async (formData: SignUpFormValue) => {
+    try {
+      await api.post("/users", {
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+      });
+      router.push("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Form {...form}>
-      <form className="space-y-6">
+      <form
+        className="space-y-6"
+        onSubmit={form.handleSubmit(handleRegisterUser)}
+      >
         <FormField
           control={form.control}
           name="name"
