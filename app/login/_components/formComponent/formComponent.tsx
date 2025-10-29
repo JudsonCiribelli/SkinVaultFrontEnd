@@ -88,7 +88,7 @@ const FormComoponent = () => {
 
         <div className="flex items-center justify-center ">
           <span>
-            Não possui conta ? <Link href="/">Cadastre-se</Link>
+            Não possui conta ? <Link href="/signup">Cadastre-se</Link>
           </span>
         </div>
       </form>
