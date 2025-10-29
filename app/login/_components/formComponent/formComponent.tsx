@@ -9,9 +9,11 @@ import {
   FormMessage,
 } from "@/app/_components/ui/form";
 import { Input } from "@/app/_components/ui/input";
+import api from "@/services/api";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import z from "zod";
 
@@ -23,14 +25,31 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 const FormComoponent = () => {
+  const router = useRouter();
+
   const form = useForm<FormData>({
     resolver: zodResolver(schema),
     mode: "onChange",
   });
 
+  const handleLoginUser = async (formData: FormData) => {
+    try {
+      await api.post("/session", {
+        email: formData.email,
+        password: formData.password,
+      });
+      router.push("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Form {...form}>
-      <form className="space-y-4">
+      <form
+        className="space-y-4 flex flex-col items-center"
+        onSubmit={form.handleSubmit(handleLoginUser)}
+      >
         <FormField
           control={form.control}
           name="email"
@@ -39,7 +58,7 @@ const FormComoponent = () => {
               <FormLabel>Email</FormLabel>
               <FormControl>
                 <Input
-                  className="w-[500px]"
+                  className="w-[350px] lg:w-[400px] xl:w-[500px]"
                   placeholder="seu@email.com"
                   type="email"
                   {...field}
@@ -59,7 +78,7 @@ const FormComoponent = () => {
               <FormLabel>Senha</FormLabel>
               <FormControl>
                 <Input
-                  className="w-[500px]"
+                  className="w-[350px] lg:w-[400px] xl:w-[500px]"
                   placeholder="********"
                   type="password"
                   {...field}

@@ -66,7 +66,7 @@ const SignUpComponent = () => {
               <FormLabel>Nome</FormLabel>
               <FormControl>
                 <Input
-                  className="w-[500px]"
+                  className="w-[350px] lg:w-[400px] xl:w-[500px]"
                   placeholder="Digite seu nome"
                   {...field}
                 />
@@ -84,7 +84,7 @@ const SignUpComponent = () => {
               <FormLabel>Email</FormLabel>
               <FormControl>
                 <Input
-                  className="w-[500px]"
+                  className="w-[350px] lg:w-[400px] xl:w-[500px]"
                   placeholder="Digite seu nome"
                   type="email"
                   {...field}
@@ -103,7 +103,7 @@ const SignUpComponent = () => {
               <FormLabel>Senha</FormLabel>
               <FormControl>
                 <Input
-                  className="w-[500px]"
+                  className="w-[350px] lg:w-[400px] xl:w-[500px]"
                   placeholder="Digite sua senha"
                   type="password"
                   {...field}
