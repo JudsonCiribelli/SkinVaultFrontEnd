@@ -16,6 +16,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import z from "zod";
+import { cookies } from "next/headers";
 
 const schema = z.object({
   email: z.string().nonempty({ message: "Preencha todos os campos" }),
@@ -34,13 +35,27 @@ const FormComoponent = () => {
 
   const handleLoginUser = async (formData: FormData) => {
     try {
-      await api.post("/session", {
+      const response = await api.post("/session", {
         email: formData.email,
         password: formData.password,
       });
+
+      console.log(response.data.token);
+
+      const expressTime = 60 * 60 * 24 * 30 * 1000;
+      const cookieStorage = await cookies();
+
+      cookieStorage.set("session", response.data.token, {
+        maxAge: expressTime,
+        path: "/",
+        httpOnly: false,
+      });
+
       router.push("/");
     } catch (error) {
       console.log(error);
+
+      return error;
     }
   };
 
