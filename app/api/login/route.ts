@@ -13,19 +13,19 @@ export async function POST(request: Request) {
       password,
     });
 
-    const { token, user } = response.data;
+    console.log(response.data.token);
 
     const expressTime = 60 * 60 * 24 * 30;
 
     const cookieStorage = await cookies();
-    cookieStorage.set("session", token, {
+    cookieStorage.set("session", response.data.token, {
       maxAge: expressTime,
       path: "/",
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
     });
 
-    return NextResponse.json({ user });
+    return NextResponse.json({ success: true });
   } catch (error) {
     return new NextResponse(
       JSON.stringify({
