@@ -9,14 +9,12 @@ import {
   FormMessage,
 } from "@/app/_components/ui/form";
 import { Input } from "@/app/_components/ui/input";
-import api from "@/services/api";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import z from "zod";
-import { cookies } from "next/headers";
 
 const schema = z.object({
   email: z.string().nonempty({ message: "Preencha todos os campos" }),
@@ -35,21 +33,21 @@ const FormComoponent = () => {
 
   const handleLoginUser = async (formData: FormData) => {
     try {
-      const response = await api.post("/session", {
-        email: formData.email,
-        password: formData.password,
+      const response = await fetch("/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       });
 
-      console.log(response.data.token);
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.log(errorData.message);
 
-      const expressTime = 60 * 60 * 24 * 30 * 1000;
-      const cookieStorage = await cookies();
-
-      cookieStorage.set("session", response.data.token, {
-        maxAge: expressTime,
-        path: "/",
-        httpOnly: false,
-      });
+        return;
+      }
+      console.log(formData);
 
       router.push("/");
     } catch (error) {
