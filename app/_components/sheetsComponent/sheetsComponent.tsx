@@ -17,8 +17,17 @@ import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { Avatar, AvatarImage } from "../ui/avatar";
 import { Separator } from "../ui/separator";
 import ButtonComponent from "../buttonComponent/buttonComponent";
+import { deleteCookie } from "cookies-next";
+import { useRouter } from "next/navigation";
 
 const SheetsComponent = () => {
+  const router = useRouter();
+
+  const handleDeleteCookie = () => {
+    deleteCookie("session", { path: "/" });
+    router.replace("/login");
+  };
+
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -96,9 +105,13 @@ const SheetsComponent = () => {
                 <MessageSquareCode size={16} />
               </ButtonComponent>
 
-              <ButtonComponent name="Logout">
+              <Button
+                className="flex gap-2 w-[150px]"
+                onClick={handleDeleteCookie}
+              >
+                <h2>Logout</h2>
                 <LogOut size={16} />
-              </ButtonComponent>
+              </Button>
             </div>
           </div>
         </div>
