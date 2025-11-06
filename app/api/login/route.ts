@@ -30,7 +30,7 @@ export async function POST(request: Request) {
     cookieStorage.set("session", token, {
       maxAge: expressTime,
       path: "/",
-      httpOnly: true,
+      httpOnly: false,
       secure: process.env.NODE_ENV === "production",
     });
 
