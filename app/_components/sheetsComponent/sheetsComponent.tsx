@@ -19,17 +19,20 @@ import { Separator } from "../ui/separator";
 import ButtonComponent from "../buttonComponent/buttonComponent";
 import { deleteCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const SheetsComponent = () => {
+  const [isSheetsOpen, setIsSheetsOpen] = useState(false);
   const router = useRouter();
 
   const handleDeleteCookie = () => {
     deleteCookie("session", { path: "/" });
+    setIsSheetsOpen(false);
     router.replace("/login");
   };
 
   return (
-    <Sheet>
+    <Sheet open={isSheetsOpen} onOpenChange={setIsSheetsOpen}>
       <SheetTrigger asChild>
         <Button size="icon" className="p-7 rounded-full">
           <Menu />
