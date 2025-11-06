@@ -16,7 +16,7 @@ import { Button } from "../ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { Avatar, AvatarImage } from "../ui/avatar";
 import { Separator } from "../ui/separator";
-import Link from "next/link";
+import ButtonComponent from "../buttonComponent/buttonComponent";
 
 const SheetsComponent = () => {
   return (
@@ -42,40 +42,9 @@ const SheetsComponent = () => {
 
           <div className="flex flex-col mx-2">
             <div className="ml-4 space-y-4">
-              <Button
-                className="flex gap-2 items-center justify-center w-[150px]"
-                asChild
-              >
-                <Link href="/">
-                  <h2>Profile</h2>
-                  <User size={16} />
-                </Link>
-              </Button>
-            </div>
-          </div>
-          <Separator className="my-4" />
-
-          <div className="flex flex-col mx-2">
-            <div className="ml-4 space-y-4">
-              <Button
-                className="flex gap-2 items-center justify-center w-[150px] bg-green-500"
-                asChild
-              >
-                <Link href="/">
-                  <h2>Deposito</h2>
-                  <CircleDollarSign size={16} />
-                </Link>
-              </Button>
-
-              <Button
-                className="flex gap-2 items-center justify-center w-[150px] bg-blue-500 "
-                asChild
-              >
-                <Link href="/">
-                  <h2>Withdraw</h2>
-                  <CreditCard size={16} />
-                </Link>
-              </Button>
+              <ButtonComponent name="Profile">
+                <User size={16} />
+              </ButtonComponent>
             </div>
           </div>
 
@@ -83,55 +52,13 @@ const SheetsComponent = () => {
 
           <div className="flex flex-col mx-2">
             <div className="ml-4 space-y-4">
-              <Button
-                className="flex gap-2 items-center justify-center w-[150px] bg-amber-600"
-                asChild
-              >
-                <Link href="/">
-                  <h2>Trades</h2>
-                  <RefreshCw size={16} />
-                </Link>
-              </Button>
+              <ButtonComponent name="Deposit">
+                <CircleDollarSign size={16} />
+              </ButtonComponent>
 
-              <Button
-                className="flex gap-2 items-center justify-center w-[150px] bg-yellow-500"
-                asChild
-              >
-                <Link href="/">
-                  <h2>Sell Items</h2>
-                  <Handbag size={16} />
-                </Link>
-              </Button>
-
-              <Button
-                className="flex gap-2 items-center justify-center w-[150px] bg-yellow-500"
-                asChild
-              >
-                <Link href="/">
-                  <h2>My Stall</h2>
-                  <Store size={16} />
-                </Link>
-              </Button>
-
-              <Button
-                className="flex gap-2 items-center justify-center w-[150px] bg-purple-800"
-                asChild
-              >
-                <Link href="/">
-                  <h2>Offers</h2>
-                  <ArrowDownUp />
-                </Link>
-              </Button>
-
-              <Button
-                className="flex gap-2 items-center justify-center w-[150px] bg-blue-400"
-                asChild
-              >
-                <Link href="/">
-                  <h2>Watchlist</h2>
-                  <Eye size={16} />
-                </Link>
-              </Button>
+              <ButtonComponent name="Withdraw">
+                <CreditCard size={16} />
+              </ButtonComponent>
             </div>
           </div>
 
@@ -139,25 +66,39 @@ const SheetsComponent = () => {
 
           <div className="flex flex-col mx-2">
             <div className="ml-4 space-y-4">
-              <Button
-                className="flex gap-2 items-center justify-center w-[150px] bg-gray-600"
-                asChild
-              >
-                <Link href="/">
-                  <h2>Support</h2>
-                  <MessageSquareCode size={16} />
-                </Link>
-              </Button>
+              <ButtonComponent name="Trades">
+                <RefreshCw size={16} />
+              </ButtonComponent>
 
-              <Button
-                className="flex gap-2 items-center justify-center w-[150px] bg-red-800"
-                asChild
-              >
-                <Link href="/">
-                  <h2>Logout</h2>
-                  <LogOut size={16} />
-                </Link>
-              </Button>
+              <ButtonComponent name="Sell Items">
+                <Handbag size={16} />
+              </ButtonComponent>
+
+              <ButtonComponent name="My Stall">
+                <Store size={16} />
+              </ButtonComponent>
+
+              <ButtonComponent name="Offers">
+                <ArrowDownUp size={16} />
+              </ButtonComponent>
+
+              <ButtonComponent name="Watchlist">
+                <Eye size={16} />
+              </ButtonComponent>
+            </div>
+          </div>
+
+          <Separator className="my-4" />
+
+          <div className="flex flex-col mx-2">
+            <div className="ml-4 space-y-4">
+              <ButtonComponent name="Support">
+                <MessageSquareCode size={16} />
+              </ButtonComponent>
+
+              <ButtonComponent name="Logout">
+                <LogOut size={16} />
+              </ButtonComponent>
             </div>
           </div>
         </div>
