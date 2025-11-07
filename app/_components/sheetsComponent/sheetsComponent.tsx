@@ -21,13 +21,19 @@ import { deleteCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-const SheetsComponent = () => {
+interface sheetsProps {
+  name: string;
+  email: string;
+}
+const SheetsComponent = ({ name, email }: sheetsProps) => {
   const [isSheetsOpen, setIsSheetsOpen] = useState(false);
   const router = useRouter();
 
   const handleDeleteCookie = () => {
     deleteCookie("session", { path: "/" });
+
     setIsSheetsOpen(false);
+
     router.replace("/login");
   };
 
@@ -45,8 +51,8 @@ const SheetsComponent = () => {
               <AvatarImage src="https://github.com/shadcn.png" />
             </Avatar>
             <div className="flex flex-col">
-              <h1 className="text-sm">Judson Ciribelli</h1>
-              <p className="text-xs">judson.ciribelli17@gmail.com</p>
+              <h1 className="text-sm">{name}</h1>
+              <p className="text-xs">{email}</p>
             </div>
           </div>
 
