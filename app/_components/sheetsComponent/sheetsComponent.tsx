@@ -19,15 +19,20 @@ import { Separator } from "../ui/separator";
 import ButtonComponent from "../buttonComponent/buttonComponent";
 import { deleteCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface sheetsProps {
   name: string;
   email: string;
 }
+
 const SheetsComponent = ({ name, email }: sheetsProps) => {
+  const [userName, setUserName] = useState(name);
+  const [userEmail, setUserEmail] = useState(email);
   const [isSheetsOpen, setIsSheetsOpen] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {}, [userName, userEmail]);
 
   const handleDeleteCookie = () => {
     deleteCookie("session", { path: "/" });
@@ -51,8 +56,8 @@ const SheetsComponent = ({ name, email }: sheetsProps) => {
               <AvatarImage src="https://github.com/shadcn.png" />
             </Avatar>
             <div className="flex flex-col">
-              <h1 className="text-sm">{name}</h1>
-              <p className="text-xs">{email}</p>
+              <h1 className="text-sm">{userName}</h1>
+              <p className="text-xs">{userEmail}</p>
             </div>
           </div>
 

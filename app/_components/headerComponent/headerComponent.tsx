@@ -23,6 +23,7 @@ async function GetUser() {
 
 const HeaderComponent = async () => {
   const user = await GetUser();
+
   return (
     <header className="w-full flex items-center justify-between h-24 bg-black">
       <div className="ml-6">
@@ -37,7 +38,7 @@ const HeaderComponent = async () => {
         </Link>
       </div>
       <div className="mr-6">
-        <SheetsComponent name={user.name} email={user.email} />
+        <SheetsComponent name={user?.name} email={user?.email} />
       </div>
     </header>
   );
