@@ -24,9 +24,10 @@ import { useEffect, useState } from "react";
 interface sheetsProps {
   name: string;
   email: string;
+  id: string;
 }
 
-const SheetsComponent = ({ name, email }: sheetsProps) => {
+const SheetsComponent = ({ name, email, id }: sheetsProps) => {
   const [userName, setUserName] = useState(name);
   const [userEmail, setUserEmail] = useState(email);
   const [isSheetsOpen, setIsSheetsOpen] = useState(false);
@@ -40,6 +41,11 @@ const SheetsComponent = ({ name, email }: sheetsProps) => {
     setIsSheetsOpen(false);
 
     router.replace("/login");
+  };
+
+  const handleRedirectUser = () => {
+    router.push(`/profile/${id}`);
+    setIsSheetsOpen(false);
   };
 
   return (
@@ -65,9 +71,13 @@ const SheetsComponent = ({ name, email }: sheetsProps) => {
 
           <div className="flex flex-col mx-2">
             <div className="ml-4 space-y-4">
-              <ButtonComponent name="Profile">
+              <Button
+                className="flex gap-2 w-[150px]"
+                onClick={handleRedirectUser}
+              >
+                <h2>Profile</h2>
                 <User size={16} />
-              </ButtonComponent>
+              </Button>
             </div>
           </div>
 
