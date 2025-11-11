@@ -20,6 +20,8 @@ import ButtonComponent from "../buttonComponent/buttonComponent";
 import { deleteCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { getCookiesClient } from "@/lib/cookiesClient";
+import Link from "next/link";
 
 interface sheetsProps {
   name: string;
@@ -30,6 +32,7 @@ interface sheetsProps {
 const SheetsComponent = ({ name, email, id }: sheetsProps) => {
   const [userName, setUserName] = useState(name);
   const [userEmail, setUserEmail] = useState(email);
+  const token = getCookiesClient();
   const [isSheetsOpen, setIsSheetsOpen] = useState(false);
   const router = useRouter();
 
@@ -61,10 +64,16 @@ const SheetsComponent = ({ name, email, id }: sheetsProps) => {
             <Avatar>
               <AvatarImage src="https://github.com/shadcn.png" />
             </Avatar>
-            <div className="flex flex-col">
-              <h1 className="text-sm">{userName}</h1>
-              <p className="text-xs">{userEmail}</p>
-            </div>
+            {!token ? (
+              <Button asChild className="ml-2">
+                <Link href="/login">Faça login</Link>
+              </Button>
+            ) : (
+              <div className="flex flex-col">
+                <h1 className="text-sm">{userName}</h1>
+                <p className="text-xs">{userEmail}</p>
+              </div>
+            )}
           </div>
 
           <Separator className="my-4" />
