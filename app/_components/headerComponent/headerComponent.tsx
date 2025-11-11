@@ -38,7 +38,7 @@ const HeaderComponent = async () => {
         </Link>
       </div>
       <div className="mr-6">
-        <SheetsComponent name={user?.name} email={user?.email} />
+        <SheetsComponent name={user?.name} email={user?.email} id={user?.id} />
       </div>
     </header>
   );

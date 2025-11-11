@@ -61,18 +61,20 @@ const SheetsComponent = ({ name, email, id }: sheetsProps) => {
       <SheetContent>
         <div className="flex flex-col items-start justify-between mt-14">
           <div className="flex ml-4 gap-3">
-            <Avatar>
-              <AvatarImage src="https://github.com/shadcn.png" />
-            </Avatar>
             {!token ? (
-              <Button asChild className="ml-2">
+              <Button asChild className="">
                 <Link href="/login">Faça login</Link>
               </Button>
             ) : (
-              <div className="flex flex-col">
-                <h1 className="text-sm">{userName}</h1>
-                <p className="text-xs">{userEmail}</p>
-              </div>
+              <>
+                <Avatar>
+                  <AvatarImage src="https://github.com/shadcn.png" />
+                </Avatar>
+                <div className="flex flex-col">
+                  <h1 className="text-sm">{userName}</h1>
+                  <p className="text-xs">{userEmail}</p>
+                </div>
+              </>
             )}
           </div>
 
