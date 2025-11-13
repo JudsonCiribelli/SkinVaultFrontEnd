@@ -1,10 +1,17 @@
 "use client";
 import { Button } from "@/app/_components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "@/app/_components/ui/dropdown-menu";
 import { StarIcon } from "lucide-react";
+import FormSkinComponent from "../formSkinComponent/formSkinComponent";
 
 type UserProps = {
   name: string;
   email: string;
+  id?: string;
   balance: string;
   reviewCount: number;
   averageRating: number;
@@ -37,12 +44,24 @@ const UserComponent = ({ user }: User) => {
         </div>
         <div className=" w-full  bg-gray-800 p-3 my-4 rounded-lg h-28 space-y-4  xl:w-[400px] mx-2">
           <p className="text-sm text-white">Tem algum que deseja vender ? </p>
-          <Button
-            onClick={addNewSkin}
-            className="text-white hover:cursor-pointer"
-          >
-            Cadastre
-          </Button>
+
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                onClick={addNewSkin}
+                className="text-white hover:cursor-pointer"
+              >
+                Cadastre
+              </Button>
+            </DropdownMenuTrigger>
+
+            <DropdownMenuContent
+              className="w-full ml-1.5 p-4 mb-20 mt-10 bg-gray-800 xl:p-9 lg:p-6 xs:ml-0.5"
+              align="center"
+            >
+              <FormSkinComponent name={user.name} id={user.id!} />
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
     </>
